@@ -4,10 +4,10 @@ import { defineConfig } from 'vitest/config'
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
-    plugins: [tailwindcss(), vue()],
-    test: {
-        deps: {
-            interopDefault: true,
-        },
+  plugins: [tailwindcss(), vue()],
+  test: {
+    deps: {
+      interopDefault: true,
     },
+  },
 }))

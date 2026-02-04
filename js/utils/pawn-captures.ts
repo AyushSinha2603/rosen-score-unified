@@ -1,38 +1,38 @@
 import { Color, Square } from 'chess.js'
 
 export function pawnCaptures(colorToMove: Color, squareToAttack: Square): Square[] {
-    let pawnsAttackFrom
+  let pawnsAttackFrom
 
-    if (colorToMove.startsWith('w')) {
-        pawnsAttackFrom = [
-            [-1, -1],
-            [+1, -1],
-        ]
-    } else {
-        pawnsAttackFrom = [
-            [-1, +1],
-            [+1, +1],
-        ]
+  if (colorToMove.startsWith('w')) {
+    pawnsAttackFrom = [
+      [-1, -1],
+      [+1, -1],
+    ]
+  } else {
+    pawnsAttackFrom = [
+      [-1, +1],
+      [+1, +1],
+    ]
+  }
+
+  let files = 'abcdefgh'
+  let ranks = '12345678'
+
+  let currentFile = files.indexOf(squareToAttack[0])
+  let currentRank = ranks.indexOf(squareToAttack[1])
+
+  let destinations = []
+
+  for (const pawnMove of pawnsAttackFrom) {
+    let destinationFile = files.charAt(currentFile + pawnMove[0])
+    let destinationRank = ranks.charAt(currentRank + pawnMove[1])
+
+    if (destinationFile && destinationRank) {
+      destinations.push(destinationFile + destinationRank)
     }
+  }
 
-    let files = 'abcdefgh'
-    let ranks = '12345678'
+  destinations = destinations.sort((a, b) => a.localeCompare(b))
 
-    let currentFile = files.indexOf(squareToAttack[0])
-    let currentRank = ranks.indexOf(squareToAttack[1])
-
-    let destinations = []
-
-    for (const pawnMove of pawnsAttackFrom) {
-        let destinationFile = files.charAt(currentFile + pawnMove[0])
-        let destinationRank = ranks.charAt(currentRank + pawnMove[1])
-
-        if (destinationFile && destinationRank) {
-            destinations.push(destinationFile + destinationRank)
-        }
-    }
-
-    destinations = destinations.sort((a, b) => a.localeCompare(b))
-
-    return destinations as Square[]
+  return destinations as Square[]
 }

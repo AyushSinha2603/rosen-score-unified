@@ -8,52 +8,52 @@ import { TrophyCheckResult } from '../types/types'
  */
 
 export function consecutiveCapturesAnySquare(moves: PgnMove[], count: number): TrophyCheckResult {
-    let captures = moves.map((move) => (move.notation.strike === 'x' ? 'x' : '.')).join('')
+  let captures = moves.map((move) => (move.notation.strike === 'x' ? 'x' : '.')).join('')
 
-    if (captures.includes('x'.repeat(count))) {
-        return [
-            {
-                color: 'w',
-                onMoveNumber: captures.indexOf('x'.repeat(count)),
-            },
-            {
-                color: 'b',
-                onMoveNumber: captures.indexOf('x'.repeat(count)),
-            },
-        ]
-    }
+  if (captures.includes('x'.repeat(count))) {
+    return [
+      {
+        color: 'w',
+        onMoveNumber: captures.indexOf('x'.repeat(count)),
+      },
+      {
+        color: 'b',
+        onMoveNumber: captures.indexOf('x'.repeat(count)),
+      },
+    ]
+  }
 
-    return []
+  return []
 }
 
 export function consecutiveCapturesSameSquare(moves: PgnMove[], count: number): TrophyCheckResult {
-    let captures = moves
-        .map((move, index) => {
-            let previousIndex = Math.max(index - 1, 0)
+  let captures = moves
+    .map((move, index) => {
+      let previousIndex = Math.max(index - 1, 0)
 
-            const currentDestinationSquare = move.notation.col + move.notation.row
-            const previousDestinationSquare = moves[previousIndex].notation.col + moves[previousIndex].notation.row
+      const currentDestinationSquare = move.notation.col + move.notation.row
+      const previousDestinationSquare = moves[previousIndex].notation.col + moves[previousIndex].notation.row
 
-            if (move.notation.strike === 'x' && currentDestinationSquare === previousDestinationSquare) {
-                return 'x'
-            } else {
-                return '.'
-            }
-        })
-        .join('')
+      if (move.notation.strike === 'x' && currentDestinationSquare === previousDestinationSquare) {
+        return 'x'
+      } else {
+        return '.'
+      }
+    })
+    .join('')
 
-    if (captures.includes('x'.repeat(count))) {
-        return [
-            {
-                color: 'w',
-                onMoveNumber: captures.indexOf('x'.repeat(count)),
-            },
-            {
-                color: 'b',
-                onMoveNumber: captures.indexOf('x'.repeat(count)),
-            },
-        ]
-    }
+  if (captures.includes('x'.repeat(count))) {
+    return [
+      {
+        color: 'w',
+        onMoveNumber: captures.indexOf('x'.repeat(count)),
+      },
+      {
+        color: 'b',
+        onMoveNumber: captures.indexOf('x'.repeat(count)),
+      },
+    ]
+  }
 
-    return []
+  return []
 }

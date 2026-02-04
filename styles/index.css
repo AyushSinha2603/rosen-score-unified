@@ -3,27 +3,27 @@
 @import 'tailwindcss';
 
 [v-cloak] {
-    display: none;
+  display: none;
 }
 
 html {
-    @apply bg-sky-700 text-white;
+  @apply bg-sky-700 text-white;
 }
 
 h1 {
-    font-family: Bangers, system-ui, sans-serif;
-    font-weight: 500;
+  font-family: Bangers, system-ui, sans-serif;
+  font-weight: 500;
 }
 
 .dotted-underline {
-    @apply decoration-dotted
+  @apply decoration-dotted
         hover:decoration-dashed
         underline
         underline-offset-1;
 }
 
 .heading {
-    @apply bg-sky-900
+  @apply bg-sky-900
         text-center
         text-sm
         uppercase
@@ -33,10 +33,10 @@ h1 {
 }
 
 .is-download-complete .accomplishment-does-not-have-games {
-    @apply bg-slate-400
+  @apply bg-slate-400
         text-white;
 }
 
 .is-download-complete .accomplishment-does-not-have-games div {
-    @apply bg-[#7c8ca3];
+  @apply bg-[#7c8ca3];
 }
