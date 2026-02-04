@@ -854,6 +854,18 @@ export default {
     if (savedForm.filters) {
       this.inputs.filters = savedForm.filters
     }
+
+    const params = new URLSearchParams(window.location.search)
+
+    const site = params.get('site')
+    if (site === 'lichess' || site === 'chesscom') {
+      this.inputs.type = site
+    }
+
+    const username = params.get('username')
+    if (username) {
+      this.inputs.value = username
+    }
   },
 
   methods: {
