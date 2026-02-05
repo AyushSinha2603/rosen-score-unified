@@ -4,6 +4,7 @@
   packages = [ pkgs.git ];
 
   languages.javascript.enable = true;
+  languages.javascript.package = pkgs.nodejs-slim_24;
   languages.javascript.npm.enable = true;
   languages.javascript.pnpm.enable = true;
   languages.javascript.pnpm.install.enable = true;
