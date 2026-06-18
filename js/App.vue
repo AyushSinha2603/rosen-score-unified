@@ -54,7 +54,7 @@
                 v-model="inputs.value"
               />
               <div class="mt-4" v-if="inputs.type === 'both'">
-              Enter Chess.com username:
+                Enter Chess.com username:
                 <input
                   type="text"
                   class="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -171,7 +171,7 @@
 
       <div class="mb-1">
         on
-        <strong>{{ inputs.type === 'both' ? 'both platforms' : (inputs.type === 'lichess' ? 'Lichess' : 'Chess.com') }}</strong>
+        <strong>{{ inputs.type === 'both' ? 'both platforms' : inputs.type === 'lichess' ? 'Lichess' : 'Chess.com' }}</strong>
         and has completed
         <strong> {{ totalAccomplishmentsCompletedPercentage }}%</strong>
         of the goals ({{ totalAccomplishmentsCompleted }}
@@ -793,7 +793,7 @@ export default {
       inputs: {
         type: <ReportSource | 'both'>'lichess',
         value: '',
-        valueChesscom:'',
+        valueChesscom: '',
         filters: {
           sinceHoursAgo: 0,
         },
@@ -931,11 +931,11 @@ export default {
 
       // 1. Build an array of URLs to fetch
       let urls: string[] = []
-      
+
       if (this.inputs.type === 'lichess' || this.inputs.type === 'both') {
         urls.push(`https://lichess.org/@/${this.username}`)
       }
-      
+
       if (this.inputs.type === 'chesscom') {
         urls.push(`https://www.chess.com/member/${this.username}`)
       } else if (this.inputs.type === 'both') {
@@ -949,13 +949,13 @@ export default {
         player(url)
           .then(async (player: Profile) => {
             this.player = player
-          
+
             // Format display names with their respective platforms
             if (this.inputs.type === 'both') {
               if (this.username !== this.usernameChesscom) {
                 // Different usernames: Ghost(Lichess) & Ghost2(Chess.com)
                 this.player.username = `${this.inputs.value} (Lichess) & ${this.inputs.valueChesscom} (Chess.com)`
-                this.player.title = '' 
+                this.player.title = ''
               } else {
                 // Same username on both
                 this.player.username = `${this.inputs.value} (Both Platforms)`
